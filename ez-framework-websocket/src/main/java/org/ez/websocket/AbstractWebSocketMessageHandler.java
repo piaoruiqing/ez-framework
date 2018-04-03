@@ -18,10 +18,10 @@ import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 /**
  * Abstract web socket message handler
  * @author Ruiqing.Piao
- *
+ * 
  * @param <T>	entity
  */
-public abstract class AbstractWebSocketMessageHandler<T> extends AbstractWebSocketHandler {
+public abstract class AbstractWebSocketMessageHandler extends AbstractWebSocketHandler {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AbstractWebSocketMessageHandler.class);
 	
@@ -33,19 +33,20 @@ public abstract class AbstractWebSocketMessageHandler<T> extends AbstractWebSock
 	 * @author Ruiqing.Piao
 	 * @param entity
 	 */
-	public void sendTextMessage(T entity) {
-		if(sessionMap.isEmpty()) {
+	public void sendTextMessage(WebSocketMsg msg) {
+		if(null == msg || sessionMap.isEmpty()) {
 			return ;
 		}
 		sessionMap.forEach((k,v)->{
 			if(!v.isOpen()) {
 				return ;
 			}
-			String msg = WebSocketMsg.getMsgAsString(entity);
-			if(null == msg) {
+			String jsonData = ObjectMapperUtil.writeValueAsString(msg);
+			if(null == jsonData) {
+				logger.error("message serialize error");
 				return ;
 			}
-			TextMessage message = new TextMessage(msg);
+			TextMessage message = new TextMessage(jsonData);
 			try {
 				v.sendMessage(message);
 			} catch (IOException e) {
@@ -66,13 +67,15 @@ public abstract class AbstractWebSocketMessageHandler<T> extends AbstractWebSock
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		super.handleTextMessage(session, message);
 		byte[] bytes = message.asBytes();
-		if(bytes.length <= 0 || bytes[0] != 123 || bytes[bytes.length-1] != 125) {
+		if(bytes.length <= 1 || bytes[0] != 123 || bytes[bytes.length-1] != 125) {
 			// only handle json string
 			// simple filter
+			session.sendMessage(new TextMessage("message is not json string"));
 			return ;
 		}
 		WebSocketMsg msg = ObjectMapperUtil.readValue(bytes,WebSocketMsg.class);
 		if(null == msg) {
+			session.sendMessage(new TextMessage("message deserialize error"));
 			return ;
 		}
 		this.handleTextMessage(msg);

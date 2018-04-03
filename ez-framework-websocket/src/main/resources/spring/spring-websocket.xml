@@ -16,4 +16,5 @@
 			<bean class="org.ez.websocket.interceptor.ExtendHttpSessionHandshakeInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
+	
 </beans>

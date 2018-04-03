@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * Web socket dto
  * @author Ruiqing.Piao
- *
+ * 
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WebSocketMsg implements Serializable{
@@ -19,6 +19,14 @@ public class WebSocketMsg implements Serializable{
 	private String id;
 	private String type;
 	private Object data;
+	
+	public WebSocketMsg() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public WebSocketMsg(Object data) {
+		this.data = data;
+	}
 	
 	public String getId() {
 		return id;
@@ -39,8 +47,8 @@ public class WebSocketMsg implements Serializable{
 		this.data = data;
 	}
 	
-	public static String getMsgAsString(Object obj) {
-		return ObjectMapperUtil.writeValueAsString(obj);
+	public static String getMsgAsString(Object data) {
+		return ObjectMapperUtil.writeValueAsString(new WebSocketMsg(data));
 	}
 	
 }
