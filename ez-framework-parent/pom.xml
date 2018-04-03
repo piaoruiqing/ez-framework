@@ -19,6 +19,7 @@
 		<jackson.version>2.5.4</jackson.version>
 		<org.apache.commons.version>3.7</org.apache.commons.version>
 		<logback.version>1.2.3</logback.version>
+		<javassist.version>3.22.0-GA</javassist.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -201,6 +202,12 @@
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
 				<version>${logback.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
