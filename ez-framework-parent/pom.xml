@@ -14,14 +14,25 @@
 	</modules>
 	<properties>
 		<org.ez.version>0.0.1-SNAPSHOT</org.ez.version>
-		<org.springframework.version>4.1.9.RELEASE</org.springframework.version>
+		<org.springframework.version>5.0.5.RELEASE</org.springframework.version>
 		<org.spring-data-jpa.version>2.0.5.RELEASE</org.spring-data-jpa.version>
-		<jackson.version>2.5.4</jackson.version>
+		<org.hibernate.version>5.2.16.Final</org.hibernate.version>
+		<jackson.version>2.9.5</jackson.version>
 		<org.apache.commons.version>3.7</org.apache.commons.version>
 		<logback.version>1.2.3</logback.version>
 		<javassist.version>3.22.0-GA</javassist.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${org.hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.2.Final</version>
+		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -65,6 +76,10 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
