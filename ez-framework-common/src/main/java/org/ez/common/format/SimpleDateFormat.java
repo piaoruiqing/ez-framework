@@ -18,19 +18,24 @@ import org.apache.commons.lang3.time.DateUtils;
 public class SimpleDateFormat extends DateFormat{
 
 	private static final long serialVersionUID = 1L;
-	public static final String DEFAULT_PATTERN = "yyyy-MM-dd hh:mm:ss";
+	
+	public static final String[] DEFAULT_PATTERN = {"yyyy-MM-dd hh:mm:ss","yyyy-MM-dd hh:mm:ss.SSS"};
 	private String[] pattern;
 	
 	public SimpleDateFormat() {
 		this(DEFAULT_PATTERN);
 	}
+	
 	public SimpleDateFormat(String... pattern) {
+		if(pattern.length <= 0) {
+			throw new IllegalArgumentException("pattern must not be empty");
+		}
 		this.pattern = pattern;
 	}
 
 	@Override
 	public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition fieldPosition) {
-		return new StringBuffer(DateFormatUtils.format(date, DEFAULT_PATTERN));
+		return toAppendTo.append(DateFormatUtils.format(date, pattern[0]));
 	}
 
 	@Override
@@ -39,13 +44,21 @@ public class SimpleDateFormat extends DateFormat{
 		try {
 			date =  DateUtils.parseDate(source, pattern);
 			pos.setIndex(1);
-		} catch (ParseException e) {}
+		} catch (ParseException e) {
+			// ignore
+		}
 		return date;
 	}
 	
 	@Override
 	public Object clone() {
+//		return new SimpleDateFormat(pattern);
 		return this;
+	}
+	
+	@Override
+	public int hashCode() {
+		return pattern.hashCode();
 	}
 
 }
