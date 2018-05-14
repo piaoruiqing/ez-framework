@@ -17,6 +17,11 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+/**
+ * global exception handler
+ * @author Ruiqing.Piao
+ *
+ */
 @Component
 public class GlobalExceptionHandler implements HandlerExceptionResolver,BeanPostProcessor{
 	

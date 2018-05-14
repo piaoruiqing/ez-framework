@@ -8,9 +8,9 @@ import java.util.Map;
 public class BeanUtils {
 	
 	/**
-	 * Converts the entity to map if the attribute has a get method
+	 * convert the entity to map if the attribute has a get method
 	 * <br>
-	 * Does not ignore null value
+	 * do not ignore null value
 	 * @date 2018-04-01 14:45:01
 	 * @author Ruiqing.Piao
 	 * @param obj
@@ -21,7 +21,7 @@ public class BeanUtils {
 	}
 	
 	/**
-	 * Converts the entity to map if the attribute has a get method
+	 * converts the entity to map if the attribute has a get method
 	 * @date 2018-04-01 14:51:45
 	 * @author Ruiqing.Piao
 	 * @param obj

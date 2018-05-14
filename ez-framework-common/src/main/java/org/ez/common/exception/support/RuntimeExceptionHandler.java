@@ -23,5 +23,5 @@ public class RuntimeExceptionHandler implements ExceptionHandler {
 		}
 		return null;
 	}
-	
+
 }

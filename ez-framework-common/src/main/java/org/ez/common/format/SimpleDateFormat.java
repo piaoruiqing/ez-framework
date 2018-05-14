@@ -19,7 +19,7 @@ public class SimpleDateFormat extends DateFormat{
 
 	private static final long serialVersionUID = 1L;
 	
-	public static final String[] DEFAULT_PATTERN = {"yyyy-MM-dd hh:mm:ss","yyyy-MM-dd hh:mm:ss.SSS"};
+	public static final String[] DEFAULT_PATTERN = {"yyyy-MM-dd HH:mm:ss","yyyy-MM-dd HH:mm:ss.SSS","yyyy-MM-dd"};
 	private String[] pattern;
 	
 	public SimpleDateFormat() {

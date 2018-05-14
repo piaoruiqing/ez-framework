@@ -30,5 +30,20 @@
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 	</context:component-scan>
 	
-	<mvc:annotation-driven />
+	<mvc:annotation-driven conversion-service="conversionService">
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="ez.objectMapper"></property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+            	<bean class="org.ez.common.converter.DateConverter"/>
+        	</set>
+   		</property>
+	</bean>
+	
 </beans>

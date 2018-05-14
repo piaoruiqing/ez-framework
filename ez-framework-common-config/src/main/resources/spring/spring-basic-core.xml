@@ -37,6 +37,9 @@
 	
 	<mvc:annotation-driven />
 	
-<!-- 	<jpa:auditing/> -->
+	<bean id="ez.objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+		<property name="dateFormat" ref="ez.dateFormat"></property>
+	</bean>
+	<bean id="ez.dateFormat" class="org.ez.common.format.SimpleDateFormat"></bean>
 	
 </beans>
