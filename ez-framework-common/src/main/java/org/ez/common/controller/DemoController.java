@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.ez.common.entity.DemoEntity;
 import org.ez.common.exception.entity.MessageException;
 import org.ez.common.service.IDemoService;
+import org.ez.common.service.RedisService;
 import org.ez.common.utils.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,14 @@ public class DemoController {
 	
 	@Autowired
 	private IDemoService demoService;
+	@Autowired
+	private RedisService redisService;
+	
+	@RequestMapping(value = "/redis/add")
+	public ResponseData redisAdd(String key,String value) {
+		redisService.add(key, value);
+		return ResponseData.success();
+	}
 	
 	@RequestMapping(value = "/date", method = {RequestMethod.GET,RequestMethod.POST})
 	public ResponseData DateConverter(@RequestParam(required = true) Date date) {

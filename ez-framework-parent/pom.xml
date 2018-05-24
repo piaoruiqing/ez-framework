@@ -16,6 +16,8 @@
 		<org.ez.version>0.0.1-SNAPSHOT</org.ez.version>
 		<org.springframework.version>5.0.5.RELEASE</org.springframework.version>
 		<org.spring-data-jpa.version>2.0.5.RELEASE</org.spring-data-jpa.version>
+		<org.spring-data-redis.version>2.0.7.RELEASE</org.spring-data-redis.version>
+		<jedis.version>2.9.0</jedis.version>
 		<org.hibernate.version>5.2.16.Final</org.hibernate.version>
 		<jackson.version>2.9.5</jackson.version>
 		<org.apache.commons.version>3.7</org.apache.commons.version>
@@ -23,13 +25,6 @@
 		<javassist.version>3.22.0-GA</javassist.version>
 	</properties>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-server -->
-		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-server</artifactId>
-			<version>9.4.10.v20180503</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -115,6 +110,16 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+			    <groupId>redis.clients</groupId>
+			    <artifactId>jedis</artifactId>
+			    <version>${jedis.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.springframework.data</groupId>
+			    <artifactId>spring-data-redis</artifactId>
+			    <version>${org.spring-data-redis.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-core</artifactId>
