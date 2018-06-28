@@ -23,12 +23,19 @@
 		<org.apache.commons.version>3.7</org.apache.commons.version>
 		<logback.version>1.2.3</logback.version>
 		<javassist.version>3.22.0-GA</javassist.version>
+		<javax.servlet.version>3.0.1</javax.servlet.version>		
+		<lombok.version>1.16.20</lombok.version>
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<version>${javax.servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -111,14 +118,20 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-			    <groupId>redis.clients</groupId>
-			    <artifactId>jedis</artifactId>
-			    <version>${jedis.version}</version>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
-			    <groupId>org.springframework.data</groupId>
-			    <artifactId>spring-data-redis</artifactId>
-			    <version>${org.spring-data-redis.version}</version>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-redis</artifactId>
+				<version>${org.spring-data-redis.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
